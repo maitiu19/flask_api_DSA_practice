@@ -1,10 +1,11 @@
 from sqlite3 import Connection as SQLite3Connection
-from flask import Flask, request,jsonify
+from flask import Flask, request, jsonify
 from datetime import datetime
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from flask_sqlalchemy import SQLAlchemy
 import os
+from linked_list import LinkedList
 
 #define the app
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -29,7 +30,7 @@ class User(db.Model):
     posts = db.relationship("BlogPost")
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        return f"User\t name: {self.name},\n\t email: {self.email},\n\t phone: {self.phone}\n"
 
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
@@ -64,7 +65,20 @@ def get_all_users_asc():
 
 @app.route("/user/descending_id", methods=['GET'])
 def get_all_users_desc():
-    pass
+    all_users = User.query.all()
+    all_users_ll = LinkedList()
+
+    for user in all_users:
+        all_users_ll.insert_beginning(
+            {
+                "id" : user.id,
+                "name" : user.name,
+                "email" : user.email,
+                "phone" : user.phone,
+            }
+        )
+        return jsonify(all_users_ll.to_list()), 200
+
 
 @app.route("/user/<user_id>", methods=['GET'])
 def get_user(user_id):
@@ -90,5 +104,8 @@ def get_all_blog_posts(user_id):
 def delete_blog_posts(blog_post_id):
     pass
 
-if __name__ == "__main__":
-    app.run(debug=True)
+#if __name__ == "__main__":
+#    app.run(debug=True)
+
+query_user = User.query.all()
+print(query_user)
