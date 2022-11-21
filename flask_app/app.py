@@ -73,11 +73,26 @@ def create_user():
     db.session.commit()
     return jsonify({"message" : "User created"}), 200
 
-
+#returns all used ascending by id using linked list
 @app.route("/user/ascending_id", methods=['GET'])
 def get_all_users_asc():
-    pass
+    users = User.query.all()
+    all_users_ll = LinkedList()
 
+    for user in users:
+        all_users_ll(
+            {
+                "id" : user.id,
+                "name" : user.name,
+                "email" : user.email,
+                "phone" : user.phone,
+                "address" : user.address
+            }
+        )
+    return jsonify(all_users_ll.to_list()), 200
+
+
+#returns all unders descending by id using linked list
 @app.route("/user/descending_id", methods=['GET'])
 def get_all_users_desc():
     users = User.query.all()
@@ -93,7 +108,7 @@ def get_all_users_desc():
                 "address" : user.address
             }
         )
-    return jsonify(all_users_ll.to_list()), print(all_users_ll.to_list()[0])
+    return jsonify(all_users_ll.to_list())
 
 
 @app.route("/user/<user_id>", methods=['GET'])
