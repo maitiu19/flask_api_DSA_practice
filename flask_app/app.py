@@ -6,22 +6,33 @@ from sqlalchemy.engine import Engine
 from flask_sqlalchemy import SQLAlchemy
 import os
 from linked_list import LinkedList
+from flask_migrate import Migrate
 
 #define the app
 basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__)
+#configure the app
+app.config["SQLALCHEMY_DATABASE_URI"] = \
+    "sqlite:///" + os.path.join(basedir,"data.sqlite")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
+db.create_all()
+migrate = Migrate(app, db)
 
-def create_app():
-    app = Flask(__name__)
-    #configure the app
-    app.config["SQLALCHEMY_DATABASE_URI"] = \
-        "sqlite:///" + os.path.join(basedir,"data.sqlite")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    with app.app_context():
-        db = SQLAlchemy(app)
-        db.create_all()
-    return app,db
+# app, db = create_app()
+# def create_app():
+#     app = Flask(__name__)
+#     #configure the app
+#     app.config["SQLALCHEMY_DATABASE_URI"] = \
+#         "sqlite:///" + os.path.join(basedir,"data.sqlite")
+#     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+#     with app.app_context():
+#         db = SQLAlchemy(app)
+#         db.create_all()
+#         migrate = Migrate(app, db)
+#     return app,db
 
-app, db = create_app()
+# app, db = create_app()
 
 #setup some basic models
 class User(db.Model):
@@ -69,10 +80,10 @@ def get_all_users_asc():
 
 @app.route("/user/descending_id", methods=['GET'])
 def get_all_users_desc():
-    all_users = User.query.all()
+    users = User.query.all()
     all_users_ll = LinkedList()
 
-    for user in all_users:
+    for user in users:
         all_users_ll.insert_beginning(
             {
                 "id" : user.id,
@@ -82,7 +93,7 @@ def get_all_users_desc():
                 "address" : user.address
             }
         )
-        return jsonify(all_users_ll.to_list()), 200
+    return jsonify(all_users_ll.to_list()), print(all_users_ll.to_list()[0])
 
 
 @app.route("/user/<user_id>", methods=['GET'])
@@ -111,6 +122,3 @@ def delete_blog_posts(blog_post_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-#query_user = User.query.all()
-#print(query_user)
