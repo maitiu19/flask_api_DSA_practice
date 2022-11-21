@@ -52,6 +52,17 @@ class LinkedList:
         self.last_node.next_node = Node(data,None)
         self.last_node = self.last_node.next_node
 
+    def get_user_by_id(self,user_id):
+        node = self.head
+        while node:
+            if node.data['id'] == user_id:
+                return node.data
+            else:
+                node = node.next_node
+        return None
+        
+        
+
     def __repr__(self):
         ll_string = ""
         node = self.head
