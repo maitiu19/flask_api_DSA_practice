@@ -97,7 +97,7 @@ def get_all_users_asc():
 def get_all_users_desc():
     users = User.query.all()
     all_users_ll = LinkedList()
-
+    #populate the linked list by populating at beginning
     for user in users:
         all_users_ll.insert_beginning(
             {
@@ -113,7 +113,22 @@ def get_all_users_desc():
 
 @app.route("/user/<user_id>", methods=['GET'])
 def get_user(user_id):
-    pass
+    users = User.query.all()
+    all_users_ll = LinkedList()
+    for user in users:
+        all_users_ll.insert_beginning(
+            {
+                "id" : user.id,
+                "name" : user.name,
+                "email" : user.email,
+                "phone" : user.phone,
+                "address" : user.address
+            }
+        )
+    user = all_users_ll.get_user_by_id(user_id)
+    return jsonify(user), 200
+
+
 
 @app.route("/user/<user_id>", methods=['DELETE'])
 def delete_user(user_id):
