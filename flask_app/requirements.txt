@@ -1,0 +1,49 @@
+alembic @ file:///home/conda/feedstock_root/build_artifacts/alembic_1654060492067/work
+blinker==1.4
+brotlipy @ file:///D:/bld/brotlipy_1648854347500/work
+certifi @ file:///C:/Windows/TEMP/abs_e9b7158a-aa56-4a5b-87b6-c00d295b01fanefpc8_o/croots/recipe/certifi_1655968940823/work/certifi
+cffi @ file:///D:/bld/cffi_1656782940775/work
+charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1655906222726/work
+click @ file:///C:/ci/click_1646056762388/work
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+cryptography @ file:///D:/bld/cryptography_1657174142266/work
+dnspython==2.2.1
+email-validator==1.2.1
+Faker==15.3.2
+Flask @ file:///opt/conda/conda-bld/flask_1648041541647/work
+Flask-Dance==2.2.0
+Flask-Login @ file:///Users/ktietz/demo/mc3/conda-bld/flask-login_1629875349535/work
+Flask-Migrate @ file:///home/conda/feedstock_root/build_artifacts/flask-migrate_1627821482519/work
+Flask-SQLAlchemy @ file:///tmp/build/80754af9/flask-sqlalchemy_1616180561581/work
+Flask-WTF==1.0.1
+greenlet @ file:///C:/ci_310/greenlet_1642081533872/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1642433548627/work
+importlib-metadata @ file:///D:/bld/importlib-metadata_1653252994979/work
+importlib-resources @ file:///home/conda/feedstock_root/build_artifacts/importlib_resources_1655356668708/work
+itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+Jinja2 @ file:///opt/conda/conda-bld/jinja2_1647436528585/work
+Mako @ file:///home/conda/feedstock_root/build_artifacts/mako_1649097013621/work
+MarkupSafe @ file:///C:/ci/markupsafe_1654508036328/work
+mysql-connector-python==8.0.30
+mysqlclient==2.1.1
+numpy==1.23.4
+oauthlib @ file:///home/conda/feedstock_root/build_artifacts/oauthlib_1643507977997/work
+Pillow==9.2.0
+protobuf==3.20.1
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+PyJWT @ file:///home/conda/feedstock_root/build_artifacts/pyjwt_1652398519695/work
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1643496850550/work
+PySocks @ file:///D:/bld/pysocks_1648857426124/work
+python-dateutil==2.8.2
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1656534056640/work
+requests-oauthlib @ file:///home/conda/feedstock_root/build_artifacts/requests-oauthlib_1643557462909/work
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+SQLAlchemy @ file:///C:/ci/sqlalchemy_1647599976408/work
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1657224465922/work
+URLObject==2.4.3
+Werkzeug @ file:///opt/conda/conda-bld/werkzeug_1645628268370/work
+win-inet-pton @ file:///D:/bld/win_inet_pton_1648771897787/work
+wincertstore==0.2
+WTForms==3.0.1
+WTForms-SQLAlchemy==0.3
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1649012893348/work
