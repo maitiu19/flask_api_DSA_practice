@@ -80,7 +80,7 @@ def get_all_users_asc():
     all_users_ll = LinkedList()
 
     for user in users:
-        all_users_ll(
+        all_users_ll.insert_end(
             {
                 "id" : user.id,
                 "name" : user.name,
