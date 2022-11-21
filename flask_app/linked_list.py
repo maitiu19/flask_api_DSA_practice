@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,data=None, next_node=None):
+    def __init__(self, data=None, next_node=None):
         self.data = data
         self.next_node = next_node
 
@@ -18,12 +18,13 @@ class LinkedList:
         while node:
             l.append(node.data)
             node = node.next_node
+        return l
 
     #insert into empty list, new node is both head and last
     #otherwise, new node has next node of current head, resassign head
     def insert_beginning(self, data):
         if self.head is None:
-            new_node = Node(data,self.head)
+            new_node = Node(data,None)
             self.head = new_node
             self.last_node = new_node
         else:
