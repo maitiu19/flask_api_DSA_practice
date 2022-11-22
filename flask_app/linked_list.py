@@ -55,7 +55,7 @@ class LinkedList:
     def get_user_by_id(self,user_id):
         node = self.head
         while node:
-            if node.data['id'] == user_id:
+            if node.data['id'] == int(user_id):
                 return node.data
             else:
                 node = node.next_node
