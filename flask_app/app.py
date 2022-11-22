@@ -7,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from linked_list import LinkedList
 from flask_migrate import Migrate
+from hash_table import HashTable
+
 
 #define the app
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -136,7 +138,27 @@ def delete_user(user_id):
 
 @app.route("/blog_post/<user_id>", methods=['POST'])
 def create_blog_post(user_id):
-    pass
+    data = request.get_json()
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        return jsonify({"message" : "user not found"}),400
+
+    ht = HashTable(10)
+    ht.add_key_value("title", data["title"])
+    ht.add_key_value("body", data["body"])
+    ht.add_key_value("date", datetime.now())
+    ht.add_key_value("user_id", user_id)
+
+    new_post = BlogPost(
+            title = ht.get_value('title'),
+            body = ht.get_value('body'),
+            date = ht.get_value('date'), 
+            user_id=ht.get_value('user_id'))
+    
+    db.session.add(new_post)
+    db.session.commit()
+    return jsonify({"message" : "Blog post created"}), 200
+    
 
 @app.route("/blog_post/<blog_post_id>", methods=['GET'])
 def get_blog_post(blog_post_id):

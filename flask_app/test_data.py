@@ -1,6 +1,6 @@
-from app import User
+from app import User,BlogPost
 from linked_list import LinkedList
-from flask import jsonify
+from hash_table import HashTable
 
 all_users = User.query.all()
 all_users_ll = LinkedList()
@@ -13,5 +13,7 @@ for user in all_users:
         }
     )
 
+#print((all_users_ll.to_list()))
 
-print((all_users_ll.to_list()))
+posts = BlogPost.query.filter_by(user_id=10).all()
+print(posts)
