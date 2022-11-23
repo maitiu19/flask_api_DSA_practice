@@ -13,14 +13,6 @@ from binary_search_tree import BinarySearchTree
 
 #define the app
 basedir = os.path.abspath(os.path.dirname(__file__))
-# app = Flask(__name__)
-# #configure the app
-# app.config["SQLALCHEMY_DATABASE_URI"] = \
-#     "sqlite:///" + os.path.join(basedir,"data.sqlite")
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# db = SQLAlchemy(app)
-# db.create_all()
-# migrate = Migrate(app, db)
 
 def create_app():
     app = Flask(__name__)
