@@ -8,7 +8,8 @@ import os
 from linked_list import LinkedList
 from flask_migrate import Migrate
 from hash_table import HashTable
-
+import random
+from binary_search_tree import BinarySearchTree
 
 #define the app
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -162,11 +163,25 @@ def create_blog_post(user_id):
 
 @app.route("/blog_post/<blog_post_id>", methods=['GET'])
 def get_blog_post(blog_post_id):
-    pass
+    blogs = BlogPost.query.all()
+    random.shuffle(blogs)
 
-@app.route("/blog_post/<user_id>", methods=['GET'])
-def get_all_blog_posts(user_id):
-    pass
+    bst = BinarySearchTree()
+    for post in blogs:
+        bst.insert({
+            'id' : post.id,
+            'title' : post.title,
+            'body' : post.body,
+            'user_id' : post.user_id
+        })
+
+    post = bst.search(blog_post_id)
+
+    if not post:
+        return jsonify({"message" : "post not found"})
+    
+    return jsonify(post)
+
 
 @app.route("/blog_post/<blog_post_id>", methods=['GET'])
 def delete_blog_posts(blog_post_id):
